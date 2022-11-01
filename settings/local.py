@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'graphene_django',
+    'links',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
 ]
 
 ROOT_URLCONF = 'hackernews.urls'
@@ -77,10 +79,10 @@ WSGI_APPLICATION = 'hackernews.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'btrwdkut',
-        'USER': 'btrwdkut',
-        'PASSWORD':'E8CoiI60Zl6VAKFeDGUmy4wmGp1zbBCo',
-        'HOST': 'heffalump.db.elephantsql.com',
+        'NAME': 'hackernews',#'btrwdkut',
+        'USER': 'postgres',#'btrwdkut',
+        'PASSWORD':'Umundui.9712',#'E8CoiI60Zl6VAKFeDGUmy4wmGp1zbBCo',
+        'HOST':'localhost', #'heffalump.db.elephantsql.com',
         'PORT': 5432,
         }
 }
@@ -123,3 +125,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+GRAPHENE = {
+    'SCHEMA': 'hackernews.schema.schema',
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
+}
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
